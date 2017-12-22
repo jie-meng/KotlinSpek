@@ -1,5 +1,6 @@
 package com.jmengxy.kotlinspek
 
+import com.jmengxy.kotlinspek.utils.any
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.given
@@ -7,7 +8,6 @@ import org.jetbrains.spek.api.dsl.it
 import org.junit.Assert.assertEquals
 import org.junit.platform.runner.JUnitPlatform
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mockito
 
@@ -31,13 +31,13 @@ class MomentsPresenterSpec : Spek({
 
         given("with any input data") {
             beforeEachTest {
-                Mockito.`when`(dataSource.fetch(anyInt(), any(Arg::class.java))).thenReturn(1)
+                Mockito.`when`(dataSource.fetch(anyInt(), any())).thenReturn(1)
             }
 
             it("should return 1") {
-                assertEquals(1, dataSource.fetch(0, Arg()))
+                assertEquals(1, dataSource.fetch(0, Arg("Jie")))
             }
         }
     }
-});
+})
 
